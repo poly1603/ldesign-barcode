@@ -1,31 +1,115 @@
 {
   "name": "@ldesign/barcode",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "条形码组件 - 多种格式、扫描识别、批量生成",
-  "keywords": ["ldesign", "barcode", "scanner", "qrcode", "ean", "upc", "code128"],
+  "keywords": [
+    "ldesign",
+    "barcode",
+    "scanner",
+    "qrcode",
+    "ean",
+    "upc",
+    "code128"
+  ],
   "author": "LDesign Team",
   "license": "MIT",
   "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./core/*": {
+      "types": "./es/core/*.d.ts",
+      "import": "./es/core/*.js",
+      "require": "./lib/core/*.cjs"
+    },
+    "./errors": {
+      "types": "./es/errors/index.d.ts",
+      "import": "./es/errors/index.js",
+      "require": "./lib/errors/index.cjs"
+    },
+    "./errors/*": {
+      "types": "./es/errors/*.d.ts",
+      "import": "./es/errors/*.js",
+      "require": "./lib/errors/*.cjs"
+    },
+    "./formats": {
+      "types": "./es/formats/index.d.ts",
+      "import": "./es/formats/index.js",
+      "require": "./lib/formats/index.cjs"
+    },
+    "./formats/*": {
+      "types": "./es/formats/*.d.ts",
+      "import": "./es/formats/*.js",
+      "require": "./lib/formats/*.cjs"
+    },
+    "./performance": {
+      "types": "./es/performance/index.d.ts",
+      "import": "./es/performance/index.js",
+      "require": "./lib/performance/index.cjs"
+    },
+    "./performance/*": {
+      "types": "./es/performance/*.d.ts",
+      "import": "./es/performance/*.js",
+      "require": "./lib/performance/*.cjs"
+    },
+    "./renderers": {
+      "types": "./es/renderers/index.d.ts",
+      "import": "./es/renderers/index.js",
+      "require": "./lib/renderers/index.cjs"
+    },
+    "./renderers/*": {
+      "types": "./es/renderers/*.d.ts",
+      "import": "./es/renderers/*.js",
+      "require": "./lib/renderers/*.cjs"
+    },
+    "./scanner/*": {
+      "types": "./es/scanner/*.d.ts",
+      "import": "./es/scanner/*.js",
+      "require": "./lib/scanner/*.cjs"
+    },
+    "./types": {
+      "types": "./es/types/index.d.ts",
+      "import": "./es/types/index.js",
+      "require": "./lib/types/index.cjs"
+    },
+    "./types/*": {
+      "types": "./es/types/*.d.ts",
+      "import": "./es/types/*.js",
+      "require": "./lib/types/*.cjs"
+    },
+    "./utils/*": {
+      "types": "./es/utils/*.d.ts",
+      "import": "./es/utils/*.js",
+      "require": "./lib/utils/*.cjs"
+    },
+    "./es/adapters/vue/components/Barcode.vue.css": "./es/adapters/vue/components/Barcode.vue.css",
+    "./es/adapters/vue/components/BarcodeScanner.vue.css": "./es/adapters/vue/components/BarcodeScanner.vue.css",
+    "./es/adapters/vue/index.css": "./es/adapters/vue/index.css",
+    "./lib/adapters/vue/components/Barcode.vue.css": "./lib/adapters/vue/components/Barcode.vue.css",
+    "./lib/adapters/vue/components/BarcodeScanner.vue.css": "./lib/adapters/vue/components/BarcodeScanner.vue.css",
+    "./lib/adapters/vue/index.css": "./lib/adapters/vue/index.css"
+  },
   "main": "./lib/index.cjs",
   "module": "./es/index.js",
   "types": "./es/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./es/index.js",
-      "require": "./lib/index.cjs",
-      "types": "./es/index.d.ts"
-    },
-    "./vue": {
-      "import": "./es/adapters/vue/index.js",
-      "types": "./es/adapters/vue/index.d.ts"
-    },
-    "./react": {
-      "import": "./es/adapters/react/index.js",
-      "types": "./es/adapters/react/index.d.ts"
-    }
-  },
+  "unpkg": "./dist/index.min.js",
+  "jsdelivr": "./dist/index.min.js",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "es",
+    "lib"
+  ],
   "scripts": {
-    "build": "ldesign-builder build -f esm,cjs,dts"
+    "build": "ldesign-builder build -f esm,cjs,dts",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "@ldesign/shared": "workspace:*",
@@ -35,6 +119,19 @@
     "vue": ">=3.0.0",
     "react": ">=16.8.0"
   },
+  "devDependencies": {
+    "@ldesign/builder": "workspace:*",
+    "@types/react": "^18.0.0",
+    "@vitest/ui": "^2.0.0",
+    "@vue/test-utils": "^2.4.0",
+    "@testing-library/react": "^14.0.0",
+    "happy-dom": "^12.10.0",
+    "jsdom": "^23.0.0",
+    "typescript": "^5.7.3",
+    "vite": "^5.0.0",
+    "vitest": "^2.0.0",
+    "vue": "^3.0.0"
+  },
   "peerDependenciesMeta": {
     "vue": {
       "optional": true
@@ -42,12 +139,5 @@
     "react": {
       "optional": true
     }
-  },
-  "devDependencies": {
-    "@ldesign/builder": "workspace:*",
-    "@types/react": "^18.0.0",
-    "typescript": "^5.7.3",
-    "vue": "^3.0.0"
   }
 }
-

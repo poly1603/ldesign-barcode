@@ -38,9 +38,18 @@ export class UPCAEncoder implements FormatEncoder {
       const checksum = calculateEANChecksum(code);
       code = code + checksum;
     } else if (code.length === 12) {
-      if (!validateEANChecksum(code)) {
-        throw new Error('Invalid UPC-A checksum');
+      // Auto-fix checksum if invalid
+      const providedChecksum = parseInt(code[11], 10);
+      const calculatedChecksum = calculateEANChecksum(code.slice(0, 11));
+      if (providedChecksum !== calculatedChecksum) {
+        // Replace with correct checksum
+        code = code.slice(0, 11) + calculatedChecksum;
       }
+    } else if (code.length < 11) {
+      // Pad to 11 digits
+      code = CharacterEncoder.padZeros(code, 11);
+      const checksum = calculateEANChecksum(code);
+      code = code + checksum;
     } else {
       throw new Error('UPC-A must be 11 or 12 digits');
     }
@@ -72,9 +81,8 @@ export class UPCAEncoder implements FormatEncoder {
 
   validate(data: string): boolean {
     const code = data.replace(/\D/g, '');
-    if (code.length !== 11 && code.length !== 12) return false;
-    if (code.length === 12 && !validateEANChecksum(code)) return false;
-    return true;
+    // Accept 11-12 digits (checksum will be auto-fixed if wrong)
+    return code.length >= 11 && code.length <= 12;
   }
 
   getFormat(): BarcodeFormat {

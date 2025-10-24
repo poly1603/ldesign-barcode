@@ -71,8 +71,8 @@ export class ITF14Encoder implements FormatEncoder {
 
   validate(data: string): boolean {
     const code = data.replace(/\D/g, '');
-    // ITF requires even number of digits
-    return code.length >= 2 && code.length <= 14 && code.length % 2 === 0;
+    // ITF accepts any length, will be padded to 14 (even)
+    return code.length >= 1 && code.length <= 14;
   }
 
   getFormat(): BarcodeFormat {

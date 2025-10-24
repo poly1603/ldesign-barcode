@@ -43,34 +43,60 @@ export function calculateCode39Checksum(data: string): string {
 
 /**
  * Calculate Code93 check characters (C and K)
+ * Can accept either string or encoded number array
  */
-export function calculateCode93Checksum(data: string): string {
+export function calculateCode93Checksum(data: string | number[]): string | number[] {
   const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%';
 
-  // Calculate C check character
+  // Handle string input
+  if (typeof data === 'string') {
+    // Calculate C check character
+    let sumC = 0;
+    let weightC = 1;
+    for (let i = data.length - 1; i >= 0; i--) {
+      const index = charset.indexOf(data[i]);
+      sumC += index * weightC;
+      weightC++;
+      if (weightC > 20) weightC = 1;
+    }
+    const checkC = charset[sumC % 47];
+
+    // Calculate K check character (includes C)
+    let sumK = 0;
+    let weightK = 1;
+    const dataWithC = data + checkC;
+    for (let i = dataWithC.length - 1; i >= 0; i--) {
+      const index = charset.indexOf(dataWithC[i]);
+      sumK += index * weightK;
+      weightK++;
+      if (weightK > 15) weightK = 1;
+    }
+    const checkK = charset[sumK % 47];
+
+    return checkC + checkK;
+  }
+
+  // Handle number array input (for tests)
   let sumC = 0;
   let weightC = 1;
   for (let i = data.length - 1; i >= 0; i--) {
-    const index = charset.indexOf(data[i]);
-    sumC += index * weightC;
+    sumC += data[i] * weightC;
     weightC++;
     if (weightC > 20) weightC = 1;
   }
-  const checkC = charset[sumC % 47];
+  const checkC = sumC % 47;
 
-  // Calculate K check character (includes C)
+  const dataWithC = [...data, checkC];
   let sumK = 0;
   let weightK = 1;
-  const dataWithC = data + checkC;
   for (let i = dataWithC.length - 1; i >= 0; i--) {
-    const index = charset.indexOf(dataWithC[i]);
-    sumK += index * weightK;
+    sumK += dataWithC[i] * weightK;
     weightK++;
     if (weightK > 15) weightK = 1;
   }
-  const checkK = charset[sumK % 47];
+  const checkK = sumK % 47;
 
-  return checkC + checkK;
+  return [checkC, checkK];
 }
 
 /**

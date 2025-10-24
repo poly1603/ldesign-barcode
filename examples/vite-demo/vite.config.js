@@ -14,7 +14,7 @@ export default defineConfig({
     exclude: ['@ldesign/barcode'],
   },
   server: {
-    port: 3000,
+    port: 3003,
     open: true,
     host: true
   },
