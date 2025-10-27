@@ -1,0 +1,78 @@
+{
+  "name": "@ldesign/barcode-react",
+  "version": "0.3.0",
+  "description": "条形码 React 组件和 Hooks",
+  "keywords": [
+    "ldesign",
+    "barcode",
+    "react",
+    "component",
+    "hooks"
+  ],
+  "author": "LDesign Team",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./components": {
+      "types": "./es/components/index.d.ts",
+      "import": "./es/components/index.js",
+      "require": "./lib/components/index.cjs"
+    },
+    "./hooks": {
+      "types": "./es/hooks/index.d.ts",
+      "import": "./es/hooks/index.js",
+      "require": "./lib/hooks/index.cjs"
+    }
+  },
+  "main": "./lib/index.cjs",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "build": "ldesign-builder build -f esm,cjs,dts",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "@ldesign/barcode-core": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@ldesign/builder": "workspace:*",
+    "@testing-library/react": "^14.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "@vitest/ui": "^2.0.0",
+    "happy-dom": "^12.10.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "typescript": "^5.7.3",
+    "vite": "^5.0.0",
+    "vitest": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ldesign/ldesign.git",
+    "directory": "libraries/barcode/packages/react"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
+

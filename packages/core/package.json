@@ -1,0 +1,112 @@
+{
+  "name": "@ldesign/barcode-core",
+  "version": "0.3.0",
+  "description": "条形码核心库 - 生成、扫描、多种格式支持",
+  "keywords": [
+    "ldesign",
+    "barcode",
+    "scanner",
+    "ean",
+    "upc",
+    "code128",
+    "code39",
+    "generator"
+  ],
+  "author": "LDesign Team",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./core/*": {
+      "types": "./es/core/*.d.ts",
+      "import": "./es/core/*.js",
+      "require": "./lib/core/*.cjs"
+    },
+    "./formats": {
+      "types": "./es/formats/index.d.ts",
+      "import": "./es/formats/index.js",
+      "require": "./lib/formats/index.cjs"
+    },
+    "./formats/*": {
+      "types": "./es/formats/*.d.ts",
+      "import": "./es/formats/*.js",
+      "require": "./lib/formats/*.cjs"
+    },
+    "./renderers": {
+      "types": "./es/renderers/index.d.ts",
+      "import": "./es/renderers/index.js",
+      "require": "./lib/renderers/index.cjs"
+    },
+    "./renderers/*": {
+      "types": "./es/renderers/*.d.ts",
+      "import": "./es/renderers/*.js",
+      "require": "./lib/renderers/*.cjs"
+    },
+    "./scanner": {
+      "types": "./es/scanner/index.d.ts",
+      "import": "./es/scanner/index.js",
+      "require": "./lib/scanner/index.cjs"
+    },
+    "./scanner/*": {
+      "types": "./es/scanner/*.d.ts",
+      "import": "./es/scanner/*.js",
+      "require": "./lib/scanner/*.cjs"
+    },
+    "./performance": {
+      "types": "./es/performance/index.d.ts",
+      "import": "./es/performance/index.js",
+      "require": "./lib/performance/index.cjs"
+    },
+    "./types": {
+      "types": "./es/types/index.d.ts"
+    },
+    "./errors": {
+      "types": "./es/errors/index.d.ts",
+      "import": "./es/errors/index.js",
+      "require": "./lib/errors/index.cjs"
+    }
+  },
+  "main": "./lib/index.cjs",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "build": "ldesign-builder build -f esm,cjs,dts",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:ui": "vitest --ui"
+  },
+  "dependencies": {
+    "@ldesign/shared": "workspace:*",
+    "@ericblade/quagga2": "^1.8.4"
+  },
+  "devDependencies": {
+    "@ldesign/builder": "workspace:*",
+    "@vitest/ui": "^2.0.0",
+    "happy-dom": "^12.10.0",
+    "jsdom": "^23.0.0",
+    "typescript": "^5.7.3",
+    "vite": "^5.0.0",
+    "vitest": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ldesign/ldesign.git",
+    "directory": "libraries/barcode/packages/core"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
+

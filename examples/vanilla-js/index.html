@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcode - Vanilla JS Example</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>@ldesign/barcode - Vanilla JS 示例</h1>
+
+    <div class="demo-section">
+      <h2>1. 生成条码</h2>
+      <div class="controls">
+        <input type="text" id="barcodeInput" placeholder="输入条码内容" value="1234567890128" />
+        <select id="formatSelect">
+          <option value="EAN13">EAN-13</option>
+          <option value="EAN8">EAN-8</option>
+          <option value="CODE128">Code 128</option>
+          <option value="CODE39">Code 39</option>
+          <option value="UPCA">UPC-A</option>
+        </select>
+        <button id="generateBtn">生成条码</button>
+        <button id="downloadBtn">下载</button>
+      </div>
+      <div id="barcodeContainer"></div>
+    </div>
+
+    <div class="demo-section">
+      <h2>2. 扫描条码</h2>
+      <input type="file" id="fileInput" accept="image/*" />
+      <div id="scanResult"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
