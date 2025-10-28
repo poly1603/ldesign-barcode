@@ -1,0 +1,90 @@
+{
+  "name": "@ldesign/barcode-solid",
+  "version": "0.1.0",
+  "description": "条形码 Solid.js 组件和 primitives",
+  "keywords": [
+    "ldesign",
+    "barcode",
+    "solid",
+    "solidjs",
+    "component",
+    "primitive"
+  ],
+  "author": "LDesign Team",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./components": {
+      "types": "./es/components/index.d.ts",
+      "import": "./es/components/index.js",
+      "require": "./lib/components/index.cjs"
+    },
+    "./primitives": {
+      "types": "./es/primitives/index.d.ts",
+      "import": "./es/primitives/index.js",
+      "require": "./lib/primitives/index.cjs"
+    }
+  },
+  "main": "./lib/index.cjs",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "build": "ldesign-builder build -f esm,cjs,dts",
+    "dev": "ldesign-builder build -f esm,cjs,dts --watch",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist es lib coverage"
+  },
+  "dependencies": {
+    "@ldesign/barcode-core": "workspace:*"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.8.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.0.0",
+    "@ldesign/builder": "workspace:*",
+    "@solidjs/testing-library": "^0.8.0",
+    "@vitest/coverage-v8": "^2.0.0",
+    "@vitest/ui": "^2.0.0",
+    "babel-preset-solid": "^1.8.0",
+    "eslint": "^9.18.0",
+    "happy-dom": "^12.10.0",
+    "rimraf": "^5.0.5",
+    "solid-js": "^1.8.0",
+    "typescript": "^5.7.3",
+    "vite": "^5.0.0",
+    "vite-plugin-solid": "^2.10.0",
+    "vitest": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "solid-js": {
+      "optional": false
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ldesign/ldesign.git",
+    "directory": "libraries/barcode/packages/solid"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

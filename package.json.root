@@ -1,0 +1,57 @@
+{
+  "name": "@ldesign/barcode-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "条形码生成与扫描库 - 支持多框架",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r --filter='./packages/*' run build",
+    "build:core": "pnpm --filter @ldesign/barcode-core build",
+    "build:vue": "pnpm --filter @ldesign/barcode-vue build",
+    "build:react": "pnpm --filter @ldesign/barcode-react build",
+    "build:angular": "pnpm --filter @ldesign/barcode-angular build",
+    "build:svelte": "pnpm --filter @ldesign/barcode-svelte build",
+    "build:solid": "pnpm --filter @ldesign/barcode-solid build",
+    "build:qwik": "pnpm --filter @ldesign/barcode-qwik build",
+    "build:preact": "pnpm --filter @ldesign/barcode-preact build",
+    "dev": "pnpm -r --parallel --filter='./packages/*' run dev",
+    "test": "pnpm -r --filter='./packages/*' run test",
+    "test:run": "pnpm -r --filter='./packages/*' run test:run",
+    "test:coverage": "pnpm -r --filter='./packages/*' run test:coverage",
+    "lint": "pnpm -r --filter='./packages/*' run lint",
+    "lint:fix": "pnpm -r --filter='./packages/*' run lint:fix",
+    "typecheck": "pnpm -r --filter='./packages/*' run typecheck",
+    "clean": "pnpm -r --filter='./packages/*' run clean",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.0.0",
+    "@types/node": "^20.10.0",
+    "eslint": "^9.18.0",
+    "lint-staged": "^15.2.0",
+    "pnpm": "^8.15.0",
+    "rimraf": "^5.0.5",
+    "simple-git-hooks": "^2.9.0",
+    "typescript": "^5.7.3",
+    "vitepress": "^1.6.4"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,vue}": [
+      "eslint --fix"
+    ],
+    "*.{json,md,yml}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}

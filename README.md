@@ -2,6 +2,29 @@
 
 > 强大的条形码生成与扫描库 - 支持多种格式、SVG/Canvas 渲染、图像识别
 
+## 🚧 项目重构中
+
+本项目正在进行全面重构，将支持Vue、React、Angular、Svelte、Solid.js、Qwik、Preact等多个框架。
+
+### 📚 重构文档
+
+- **[🎯 下一步行动指南](./README_NEXT_STEPS.md)** - 👈 **从这里开始！**
+- [📊 项目工作总结](./PROJECT_SUMMARY.md) - 查看已完成的工作
+- [📋 完整重构计划](./RESTRUCTURE_PLAN.md) - 了解整体架构
+- [🔧 实施指南](./IMPLEMENTATION_GUIDE.md) - 详细的开发指南
+
+### 🚀 快速开始重构
+
+```powershell
+# 1. 重命名根配置
+Rename-Item package.json.root package.json
+
+# 2. 运行快速开始脚本
+.\quick-start.ps1
+```
+
+---
+
 [![NPM Version](https://img.shields.io/npm/v/@ldesign/barcode.svg)](https://www.npmjs.com/package/@ldesign/barcode)
 [![License](https://img.shields.io/npm/l/@ldesign/barcode.svg)](https://github.com/ldesign/barcode/blob/main/LICENSE)
 

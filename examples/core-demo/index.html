@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ldesign/barcode - Core Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      color: #667eea;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .demo-section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 12px;
+    }
+
+    .demo-section h2 {
+      color: #333;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 0.5rem;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-weight: 600;
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    input, select {
+      padding: 0.75rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .barcode-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 200px;
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    button:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .scanner-input {
+      display: none;
+    }
+
+    .scanner-result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .result-item {
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      background: #f8f9fa;
+      border-radius: 4px;
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+
+    .info-box strong {
+      color: #1976d2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 @ldesign/barcode</h1>
+    <p class="subtitle">强大的条形码生成与扫描库 - Core API 演示</p>
+
+    <!-- 生成演示 -->
+    <div class="demo-section">
+      <h2>📦 条形码生成</h2>
+      
+      <div class="controls">
+        <div class="control-group">
+          <label for="content">条形码内容:</label>
+          <input type="text" id="content" value="1234567890128" placeholder="输入条形码内容">
+        </div>
+        
+        <div class="control-group">
+          <label for="format">格式:</label>
+          <select id="format">
+            <option value="ean13">EAN-13</option>
+            <option value="ean8">EAN-8</option>
+            <option value="upca">UPC-A</option>
+            <option value="upce">UPC-E</option>
+            <option value="code128">Code128</option>
+            <option value="code39">Code39</option>
+            <option value="code93">Code93</option>
+            <option value="itf14">ITF-14</option>
+            <option value="codabar">Codabar</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="renderType">渲染类型:</label>
+          <select id="renderType">
+            <option value="canvas">Canvas</option>
+            <option value="svg">SVG</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="width">宽度:</label>
+          <input type="number" id="width" value="300" min="100" max="800">
+        </div>
+
+        <div class="control-group">
+          <label for="height">高度:</label>
+          <input type="number" id="height" value="100" min="50" max="300">
+        </div>
+      </div>
+
+      <div id="barcode" class="barcode-container"></div>
+
+      <div class="button-group">
+        <button id="generate">🔄 重新生成</button>
+        <button id="download-png">📥 下载 PNG</button>
+        <button id="download-svg">📥 下载 SVG</button>
+        <button id="get-dataurl">🔗 获取 Data URL</button>
+      </div>
+
+      <div class="info-box">
+        <strong>提示：</strong> 修改任何参数后点击"重新生成"按钮，或直接按回车键
+      </div>
+    </div>
+
+    <!-- 扫描演示 -->
+    <div class="demo-section">
+      <h2>📷 条形码扫描</h2>
+      
+      <input type="file" id="scannerInput" class="scanner-input" accept="image/*" multiple>
+      
+      <div class="button-group">
+        <button id="scan-button">📸 选择图片扫描</button>
+        <button id="batch-scan">📚 批量扫描</button>
+      </div>
+
+      <div id="scanner-result"></div>
+
+      <div class="info-box">
+        <strong>支持格式：</strong> JPG, PNG, GIF, BMP 等图片格式 | 
+        <strong>支持批量：</strong> 可同时选择多张图片
+      </div>
+    </div>
+
+    <!-- 格式验证演示 -->
+    <div class="demo-section">
+      <h2>✅ 格式验证</h2>
+      
+      <div class="controls">
+        <div class="control-group">
+          <label for="validate-content">待验证内容:</label>
+          <input type="text" id="validate-content" value="1234567890128" placeholder="输入条形码内容">
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button id="validate">验证格式</button>
+        <button id="detect">自动检测格式</button>
+      </div>
+
+      <div id="validate-result" class="info-box" style="margin-top: 1rem; display: none;"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

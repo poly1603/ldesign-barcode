@@ -7,6 +7,7 @@
 
 // Export types
 export * from './types';
+export * from './types/enhanced';
 
 // Export core
 export { BarcodeGenerator, createBarcode, generateBarcode } from './core/barcode-generator';
@@ -61,6 +62,11 @@ export {
 // Export utilities
 export { BinaryString, CharacterEncoder, DataValidator } from './utils/encoder';
 export * from './utils/checksum';
+export { validateBarcode, detectBarcodeFormat } from './utils/validator';
+
+// Export simplified API (recommended for most users)
+export { BarcodeGenerator } from './generator';
+export { BarcodeScanner } from './scanner';
 
 // Import for default export
 import { createBarcode, generateBarcode } from './core/barcode-generator';

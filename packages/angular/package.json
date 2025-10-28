@@ -1,0 +1,101 @@
+{
+  "name": "@ldesign/barcode-angular",
+  "version": "0.1.0",
+  "description": "条形码 Angular 组件、指令和服务",
+  "keywords": [
+    "ldesign",
+    "barcode",
+    "angular",
+    "component",
+    "directive"
+  ],
+  "author": "LDesign Team",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": "./es/index.js",
+      "require": "./lib/index.cjs"
+    },
+    "./components": {
+      "types": "./es/components/index.d.ts",
+      "import": "./es/components/index.js",
+      "require": "./lib/components/index.cjs"
+    },
+    "./directives": {
+      "types": "./es/directives/index.d.ts",
+      "import": "./es/directives/index.js",
+      "require": "./lib/directives/index.cjs"
+    },
+    "./services": {
+      "types": "./es/services/index.d.ts",
+      "import": "./es/services/index.js",
+      "require": "./lib/services/index.cjs"
+    }
+  },
+  "main": "./lib/index.cjs",
+  "module": "./es/index.js",
+  "types": "./es/index.d.ts",
+  "files": [
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "es",
+    "lib"
+  ],
+  "scripts": {
+    "build": "ldesign-builder build -f esm,cjs,dts",
+    "dev": "ldesign-builder build -f esm,cjs,dts --watch",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist es lib coverage"
+  },
+  "dependencies": {
+    "@ldesign/barcode-core": "workspace:*",
+    "tslib": "^2.6.0"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=16.0.0",
+    "@angular/common": ">=16.0.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "@angular/platform-browser-dynamic": "^18.0.0",
+    "@antfu/eslint-config": "^6.0.0",
+    "@ldesign/builder": "workspace:*",
+    "@vitest/coverage-v8": "^2.0.0",
+    "@vitest/ui": "^2.0.0",
+    "eslint": "^9.18.0",
+    "happy-dom": "^12.10.0",
+    "rimraf": "^5.0.5",
+    "rxjs": "^7.8.0",
+    "typescript": "^5.7.3",
+    "vite": "^5.0.0",
+    "vitest": "^2.0.0",
+    "zone.js": "^0.14.0"
+  },
+  "peerDependenciesMeta": {
+    "@angular/core": {
+      "optional": false
+    },
+    "@angular/common": {
+      "optional": false
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ldesign/ldesign.git",
+    "directory": "libraries/barcode/packages/angular"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
