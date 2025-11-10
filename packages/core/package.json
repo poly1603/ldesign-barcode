@@ -92,8 +92,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
-    "clean": "rimraf dist es lib coverage",
-    "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run typecheck"
+    "clean": "rimraf dist es lib coverage"
   },
   "dependencies": {
     "@ldesign/shared": "workspace:*",
@@ -121,4 +120,3 @@
     "access": "public"
   }
 }
-
